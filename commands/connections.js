@@ -28,7 +28,7 @@ module.exports = {
         embed.addFields( { name: "Hyakanime", value: `[${hyakanime.username}](${hyakanime.link})` });
       }
 
-      if (!deezer && !hyakanime) embed.setDescription("This user don't have connections");
+      if (!deezer && !hyakanime) embed.setDescription("This user doesn't have connections");
 
       interaction.reply({ embeds: [embed] });
     })
