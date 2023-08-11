@@ -12,6 +12,7 @@ module.exports = {
     axios.get(`${process.env.BC_DOMAIN}/connections?id=${user.id}`).then(res => {
       let deezer = res.data.message.deezer;
       let hyakanime = res.data.message.hyakanime;
+      let monkeytype = res.data.message.monkeytype;
 
       let embed = new EmbedBuilder()
         .setTitle(`${user.username}'s connections`)
@@ -28,7 +29,11 @@ module.exports = {
         embed.addFields( { name: "Hyakanime", value: `[${hyakanime.username}](${hyakanime.link})` });
       }
 
-      if (!deezer && !hyakanime) embed.setDescription("This user doesn't have connections");
+      if (monkeytype) {
+        embed.addFields( { name: "Monkeytype", value: `[${monkeytype.username}](${monkeytype.link})` });
+      }
+
+      if (!deezer && !hyakanime && !monkeytype) embed.setDescription("This user doesn't have connections");
 
       interaction.reply({ embeds: [embed] });
     })

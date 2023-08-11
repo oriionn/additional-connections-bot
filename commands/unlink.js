@@ -5,7 +5,7 @@ module.exports = {
   slash: new SlashCommandBuilder()
       .setName('unlink')
       .setDescription("Unlink a connection")
-      .addStringOption(option => option.setName("connection").setDescription("The connection to unlink").setRequired(true).addChoices({ name: "Hyakanime", value: "hyakanime" }, { name: "Deezer", value: "deezer" })),
+      .addStringOption(option => option.setName("connection").setDescription("The connection to unlink").setRequired(true).addChoices({ name: "Hyakanime", value: "hyakanime" }, { name: "Deezer", value: "deezer" }, { name: "Monkeytype", value: "monkeytype" })),
 
   execute: (client, interaction) => {
     let connection = interaction.options.getString("connection");
