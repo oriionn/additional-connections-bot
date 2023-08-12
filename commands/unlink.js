@@ -1,11 +1,20 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const fs = require("fs");
 const axios = require("axios");
 
+let SlashCommand = new SlashCommandBuilder()
+    .setName('unlink')
+    .setDescription("Unlink a connection")
+    .addStringOption(option => option.setName("connection").setDescription("The connection to unlink").setRequired(true));
+
+SlashCommand.options[0].choices = [];
+let connectionsAvailable = JSON.parse(fs.readFileSync("./connections.json", "utf-8"));
+connectionsAvailable.forEach(connection => {
+  SlashCommand.options[0].choices.push({ name: connection.name, value: connection.name.toLowerCase() });
+})
+
 module.exports = {
-  slash: new SlashCommandBuilder()
-      .setName('unlink')
-      .setDescription("Unlink a connection")
-      .addStringOption(option => option.setName("connection").setDescription("The connection to unlink").setRequired(true).addChoices({ name: "Hyakanime", value: "hyakanime" }, { name: "Deezer", value: "deezer" }, { name: "Monkeytype", value: "monkeytype" }, { name: "Mangacollec", value: "mangacollec" })),
+  slash: SlashCommand,
 
   execute: (client, interaction) => {
     let connection = interaction.options.getString("connection");

@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Deezer",
+    "emoji_path": "./emojis/deezer.png",
+    "params": {
+      "username": "name",
+      "link": "link"
+    }
+  },
+  {
+    "name": "Hyakanime",
+    "emoji_path": "./emojis/hyakanime.png",
+    "params": {
+      "username": "username",
+      "link": "link"
+    }
+  },
+  {
+    "name": "Mangacollec",
+    "emoji_path": "./emojis/mangacollec.png",
+    "params": {
+      "username": "username",
+      "link": "link"
+    }
+  },
+  {
+    "name": "Monkeytype",
+    "emoji_path": "./emojis/monkeytype.png",
+    "params": {
+      "username": "username",
+      "link": "link"
+    }
+  }
+]

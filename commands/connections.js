@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require("axios");
+const fs = require("fs");
 
 module.exports = {
   slash: new SlashCommandBuilder()
@@ -10,11 +11,6 @@ module.exports = {
   execute: (client, interaction) => {
     let user = interaction.options.getUser("user") || interaction.user;
     axios.get(`${process.env.BC_DOMAIN}/connections?id=${user.id}`).then(res => {
-      let deezer = res.data.message.deezer;
-      let hyakanime = res.data.message.hyakanime;
-      let monkeytype = res.data.message.monkeytype;
-      let mangacollec = res.data.message.mangacollec;
-
       let embed = new EmbedBuilder()
         .setTitle(`${user.username}'s connections`)
         .setColor("#FF0000")
@@ -22,11 +18,18 @@ module.exports = {
         .setFooter({ text: `Requested by ${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL({ dynamic: true }) })
         .setTimestamp();
 
-      if (deezer) embed.addFields( { name: "Deezer", value: `[${deezer.name}](${deezer.link})` });
-      if (hyakanime) embed.addFields( { name: "Hyakanime", value: `[${hyakanime.username}](${hyakanime.link})` });
-      if (monkeytype) embed.addFields( { name: "Monkeytype", value: `[${monkeytype.username}](${monkeytype.link})` });
-      if (mangacollec) embed.addFields( { name: "Mangacollec", value: `[${mangacollec.username}](${mangacollec.link})` });
-      if (!deezer && !hyakanime && !monkeytype && !mangacollec) embed.setDescription("This user doesn't have connections");
+      let connectionsAvailable = JSON.parse(fs.readFileSync("./connections.json", "utf-8"));
+      connectionsAvailable.forEach(connection => {
+        if (res.data.message[connection.name.toLowerCase()]) {
+          if (process.env.EMOJI_GUILDID) {
+            let emoji = client.guilds.cache.get(process.env.EMOJI_GUILDID).emojis.cache.find(emoji => emoji.name === connection.name.toLowerCase());
+            if (!emoji) client.guilds.cache.get(process.env.EMOJI_GUILDID).emojis.create( { attachment: connection.emoji_path, name: connection.name.toLowerCase() }).then(emoji => connection.sName = `${emoji} | ${connection.name}`);
+            else connection.sName = `${emoji} | ${connection.name}`;
+          } else connection.sName = connection.name;
+          embed.addFields({ name: connection.sName, value: `[${res.data.message[connection.name.toLowerCase()][connection.params.username]}](${res.data.message[connection.name.toLowerCase()][connection.params.link]})` });
+        }
+      })
+      if (Object.keys(res.data.message).length === 0) embed.setDescription("This user doesn't have connections");
 
       interaction.reply({ embeds: [embed] });
     })
