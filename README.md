@@ -56,7 +56,7 @@ npm start
 ```
 
 ## Contributors
-![Contributors](https://contrib.rocks/image?repo=oriionn/additional-connnections-bot)
+![Contributors](https://contrib.rocks/image?repo=oriionn/additional-connections-bot)
 
 ## License
 [GPL3](https://github.com/oriionn/additional-connections-bot/blob/main/LICENSE)
