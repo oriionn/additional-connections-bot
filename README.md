@@ -48,6 +48,7 @@ cp .env.example .env
 TOKEN=dfdfdf
 BC_APIKEY=dfdfdf
 BC_DOMAIN=https://bc-api.oriondev.fr
+EMOJI_GUILDID=
 ```
 PS: This is a simple example
 6. Run the bot
