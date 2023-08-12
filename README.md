@@ -59,4 +59,4 @@ npm start
 ![Contributors](https://contrib.rocks/image?repo=oriionn/additional-connnections-bot)
 
 ## License
-[GPL3](https://github.com/oriionn/better-connnections-bot/blob/main/LICENSE)
+[GPL3](https://github.com/oriionn/additional-connections-bot/blob/main/LICENSE)
