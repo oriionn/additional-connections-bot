@@ -1,12 +1,12 @@
-# Better Connections Bot
-Better Connections is a simple bot for Discord for linking account with Better Connections.
+# Additional Connections Bot
+Additional Connections is a simple bot for Discord for linking account with Additional Connections.
 
 Warning: This bot is still in development, so there may be bugs.
 
 ## Commands
 ### /link
 #### Description
-Get your token for linking account with the [extension](https://github.com/oriionn/better-connections-extensions).
+Get your token for linking account with the [extension](https://github.com/oriionn/additional-connections-extensions).
 #### Usage
 `/link`
 #### Response
@@ -56,7 +56,7 @@ npm start
 ```
 
 ## Contributors
-![Contributors](https://contrib.rocks/image?repo=oriionn/better-connnections-bot)
+![Contributors](https://contrib.rocks/image?repo=oriionn/additional-connnections-bot)
 
 ## License
 [GPL3](https://github.com/oriionn/better-connnections-bot/blob/main/LICENSE)
