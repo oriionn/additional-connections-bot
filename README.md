@@ -29,11 +29,11 @@ Unlink a connection
 ## Installation
 1. Clone the repository 
 ```bash
-git clone https://github.com/oriionn/better-connections-bot.git
+git clone https://github.com/oriionn/additional-connections-bot.git
 ```
 2. Go to the project directory
 ```bash
-cd better-connections-bot
+cd additional-connections-bot
 ```
 3. Install dependencies
 ```bash
