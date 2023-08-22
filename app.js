@@ -2,6 +2,10 @@ const Discord = require("discord.js");
 const client = new Discord.Client({ partials: Object.values(Object.fromEntries(new Map(Object.entries(Discord.Partials).filter((e) => Number.isInteger(e[1]))))),  intents: Object.values(Object.fromEntries(new Map(Object.entries(Discord.GatewayIntentBits).filter((e) => Number.isInteger(e[1]))))) });
 client.commands = [];
 
+const fastify = require('fastify')({
+  logger: false
+})
+
 require("dotenv").config();
 const fs = require("fs");
 
@@ -9,6 +13,10 @@ fs.readdirSync("./commands").forEach((file) => {
   if (!file.endsWith(".js")) return;
   client.commands.push(require(`./commands/${file}`));
 });
+
+fastify.get("/", (request, reply) => {
+  reply.send("Better Connections Bot On");
+})
 
 fs.readdirSync("./events").forEach((file) => {
   if (!file.endsWith(".js")) return;
@@ -18,3 +26,8 @@ fs.readdirSync("./events").forEach((file) => {
 })
 
 client.login(process.env.TOKEN);
+
+fastify.listen(7903, (err, address) => {
+    if (err) throw err
+    console.log(`Http server listening on ${address}`)
+})
